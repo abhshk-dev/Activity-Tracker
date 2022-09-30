@@ -9,6 +9,24 @@ class Input extends React.Component {
       inputValue: "",
     };
   }
+
+  handleToggle = (id, name) => {
+    let activities = this.state.activities;
+
+    activities.forEach((activity) => {
+      if (activity.name === name) {
+        activity.days.forEach((day) => {
+          if (day.id === id) {
+            day.isDone = !day.isDone;
+          }
+        });
+      }
+    });
+    this.setState({
+      activities: activities,
+    });
+  };
+
   handleChange = ({ target }) => {
     this.setState({
       inputValue: target.value,
@@ -18,7 +36,15 @@ class Input extends React.Component {
   handleSubmit = (event, index) => {
     event.preventDefault();
     let input = this.state.inputValue;
-    // let activityArray = [...this.state.activities];
+    let activityArray = [...this.state.activities];
+
+    if (event.target.name === "delete") {
+      activityArray.splice(index, 1);
+      this.setState({
+        activities: [...activityArray],
+      });
+      return;
+    }
 
     if (input) {
       this.setState(
@@ -59,7 +85,12 @@ class Input extends React.Component {
         </div>
         <div>
           {this.state.activities.map((activity, index) => (
-            <Activity data={activity} index={index} />
+            <Activity
+              data={activity}
+              index={index}
+              handleDelete={this.handleSubmit}
+              handleToggle={this.handleToggle}
+            />
           ))}
         </div>
       </>

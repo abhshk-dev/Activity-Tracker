@@ -183,6 +183,7 @@ input {
 .align-center {
   align-items: center;
   gap: 2rem;
+  position: relative;
 }
 
 .flex-25 {
@@ -191,6 +192,7 @@ input {
 
 .flex-70 {
   flex: 0 1 70%;
+  padding: 1rem;
 }
 
 aside {
@@ -207,4 +209,31 @@ aside {
 
 .checkboxes {
   padding: 0.5rem 1rem;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.cross {
+  position: absolute;
+  top: 1rem;
+  right: 1.75rem;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  border: 1px solid rgb(43, 24, 24);
+  background-color: #7ff4f2;
+  color: white;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.checked {
+  background-color: aquamarine;
+  color: black;
 }

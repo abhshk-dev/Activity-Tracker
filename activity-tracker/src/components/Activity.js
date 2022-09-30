@@ -1,9 +1,6 @@
 import React from "react";
-import { emptyMonth, month } from "../data";
+
 class Activity extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div
@@ -17,14 +14,28 @@ class Activity extends React.Component {
       >
         <aside className=" flex-25">
           <h2 style={{ color: "rgb(50, 48, 48)", fontSize: "32px" }}>
-            {this.props.data}
+            {this.props.data.name}
           </h2>
         </aside>
-        <div className="flex-70">
+        <div className="flex-70 flex wrap flex-start">
           {this.props.data.days.map((day) => {
-            return <button className="checkboxes">{day.id}</button>;
+            return (
+              <button
+                onClick={this.props.handleToggle(day.id, this.props.data.name)}
+                className={day.isDone ? "checked checkboxes" : "checkboxes"}
+              >
+                {day.id}
+              </button>
+            );
           })}
         </div>
+        <button
+          name="delete"
+          onClick={(e) => this.props.handleDelete(e, this.props.index)}
+          className="cross"
+        >
+          ❌
+        </button>
       </div>
     );
   }
